@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Contact Management</title>
+    <script>
+        // Test the contact management functionality
+        function testContactService() {
+            console.log('🧪 Testing Contact Service...');
+            
+            // Test localStorage operations
+            const testContacts = [
+                {
+                    id: 'test-1',
+                    name: 'Test User 1',
+                    phone_number: '+60123456789',
+                    email: 'test1@example.com',
+                    company: 'Test Company 1',
+                    classification: 'A',
+                    notes: 'Test contact',
+                    whatsappAvailable: true,
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
+                    user_id: 'user-123'
+                },
+                {
+                    id: 'test-2',
+                    name: 'Test User 2',
+                    phone_number: '+60198765432',
+                    email: 'test2@example.com',
+                    company: 'Test Company 2',
+                    classification: 'B',
+                    notes: 'Another test contact',
+                    whatsappAvailable: false,
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
+                    user_id: 'user-123'
+                }
+            ];
+            
+            // Test localStorage
+            try {
+                localStorage.setItem('ai-caller-contacts', JSON.stringify(testContacts));
+                const retrieved = localStorage.getItem('ai-caller-contacts');
+                const parsed = JSON.parse(retrieved);
+                
+                console.log('✅ localStorage test passed:', parsed.length, 'contacts');
+                document.getElementById('result').innerHTML = '✅ localStorage works: ' + parsed.length + ' test contacts saved';
+            } catch (error) {
+                console.error('❌ localStorage test failed:', error);
+                document.getElementById('result').innerHTML = '❌ localStorage error: ' + error.message;
+            }
+        }
+        
+        // Run test when page loads
+        window.onload = function() {
+            testContactService();
+        };
+    </script>
+</head>
+<body>
+    <h1>Contact Management Test</h1>
+    <p>This page tests if localStorage works for the contact management system.</p>
+    <div id="result" style="padding: 10px; margin: 10px; background: #f0f0f0; border: 1px solid #ccc;">
+        Testing...
+    </div>
+    
+    <h2>Manual Contact Data Test</h2>
+    <p>Open the main application at: <a href="https://dn62kl7va8jk.space.minimax.io/contacts" target="_blank">AI Caller Contacts Page</a></p>
+    <p>Then check the browser console (F12) for debug messages starting with 🔍, 📋, ✅, etc.</p>
+</body>
+</html>
